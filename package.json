@@ -1,0 +1,22 @@
+{
+  "name": "sockets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node bin/server/main.js",
+    "build-client-w": "webpack --config client/webpack.config.js -w",
+    "build-server-w": "tsc -p server/tsconfig.json -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^9.3.0",
+    "compression": "^1.7.1",
+    "express": "^4.16.2",
+    "html-webpack-plugin": "^2.30.1",
+    "ts-loader": "^3.2.0",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  }
+}
