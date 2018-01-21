@@ -8,9 +8,15 @@ module.exports = {
         path: path.resolve(__dirname, '../bin/client'),
         filename: 'bundle.js'
     },
+    resolve: {
+        extensions: ['.ts', '.js']
+    },
     module: {
         rules: [
-            { test: /\.ts$/, use: 'ts-loader' }
+            { test: /\.ts$/, loader: 'awesome-typescript-loader', options: {
+                    configFileName: "client/tsconfig.json"
+                }
+            }
         ]
     },
     plugins: [

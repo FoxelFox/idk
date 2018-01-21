@@ -1,10 +1,10 @@
-import {Camera, OrthographicCamera, Renderer, Scene, WebGLRenderer} from "three";
+import {Camera, OrthographicCamera, Renderer, Scene, WebGLRenderer, WebGLRenderTarget} from "three";
 
-class Render {
+export class Render {
 
-    private scene: Scene;
-    private camera: Camera;
-    private renderer: Renderer;
+    public scene: Scene;
+    public camera: Camera;
+    public renderer: WebGLRenderer;
 
     constructor() {
 
@@ -17,6 +17,12 @@ class Render {
 
         this.renderer.setSize(1280, 720);
         document.body.appendChild(this.renderer.domElement);
-        
+
+
+        let rt = new WebGLRenderTarget(100, 100);
+
+        this.renderer.setRenderTarget(rt);
+
+
     }
 }
