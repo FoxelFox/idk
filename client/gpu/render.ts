@@ -1,4 +1,8 @@
-import {Camera, OrthographicCamera, Renderer, Scene, WebGLRenderer, WebGLRenderTarget} from "three";
+import {
+    BoxGeometry, Camera, Mesh, MeshBasicMaterial, OrthographicCamera, PlaneBufferGeometry, Renderer, Scene,
+    WebGLRenderer,
+    WebGLRenderTarget
+} from "three";
 
 export class Render {
 
@@ -7,22 +11,29 @@ export class Render {
     public renderer: WebGLRenderer;
 
     constructor() {
-
+        this.init();
     }
 
     private init() {
         this.scene = new Scene();
-        this.camera = new OrthographicCamera(-0.5, 0.5, 0.5, 0.5, 1, 100);
+        this.camera = new OrthographicCamera(-0.5, 0.5, 0.5, -0.5, -15, 15);
         this.renderer = new WebGLRenderer();
 
-        this.renderer.setSize(1280, 720);
+        this.renderer.setSize(512, 512);
         document.body.appendChild(this.renderer.domElement);
 
 
-        let rt = new WebGLRenderTarget(100, 100);
+        let geo = new PlaneBufferGeometry(1, 1);
+        let mat = new MeshBasicMaterial({color: 0x00ff00});
+        let cube = new Mesh(geo, mat);
 
-        this.renderer.setRenderTarget(rt);
+        this.scene.add(cube);
 
+        let animate = () => {
+            requestAnimationFrame(animate);
+            this.renderer.render(this.scene, this.camera);
+        };
 
+        animate();
     }
 }
